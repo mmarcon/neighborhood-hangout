@@ -1,0 +1,58 @@
+/*
+ * Copyright 2012 Massimiliano Marcon (http://marcon.me)
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
+@import url(http://fonts.googleapis.com/css?family=Londrina+Outline|McLaren);
+
+body {
+    font-family: 'McLaren', cursive;
+    font-weight: 100;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+h2 {
+    position: fixed;
+    right: 10px;
+    bottom: 0;
+    background-color: #222;
+    color: white;
+    line-height: 1.5;
+    padding: 5px;
+    font-size: 12px;
+}
+
+a:link,
+a:visited,
+a:active {
+    text-decoration: none;
+    color: #4169e1;
+}
+
+a:hover {
+    color: #6495ED;
+}
+
+#map {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -205px 0 0 -205px;
+    border: 10px solid #fff;
+    box-shadow: 0 0 8px #ccc;
+    border-radius: 4px;
+}
