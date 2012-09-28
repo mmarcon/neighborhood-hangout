@@ -14,7 +14,7 @@
  * limitations under the License.
  */
  
-(function(doc){
+(function(doc, nokia){
     'use strict';
 
     var init, locationFound, locationNotFound, cities, attachEventHandlers, dataReady,
@@ -47,11 +47,13 @@
         nokia.maps.util.ApplicationContext.set({"appId": API.id, "authenticationToken": API.token});
         map = new nokia.maps.map.Display(mapEl,
             {center: [lat, lon],
-             zoomLevel: 16,
+             zoomLevel: 17,
              components:[
                 new nokia.maps.map.component.ZoomBar()
              ]});
         map.set("baseMapType", nokia.maps.map.Display.SMARTMAP);
+        map.set("maxZoomLevel", 18);
+        map.set("minZoomLevel", 16);
 
         jsonp = doc.createElement('script');
         doc.querySelector('head').appendChild(jsonp);
@@ -65,7 +67,7 @@
     };
 
     locationNotFound = function(){
-        
+        console.log('No location');
     };
 
     dataReady = function(data) {
@@ -115,7 +117,7 @@
         doc.querySelector('ul').addEventListener('click', function(e){
             e.preventDefault();
             if(e.target.tagName.match(/a/i)) {
-                if(e.target.classList+'' === 'value') {
+                if(e.target.classList.contains('value')) {
                     map.overlays.remove(density);
                     map.overlays.add(value);
                 } else {
@@ -132,5 +134,5 @@
     else {
         window.onload = init;
     }
-})(document);
+})(document, nokia);
 
