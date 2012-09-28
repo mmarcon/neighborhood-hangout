@@ -29,8 +29,19 @@
 
 
     init = function(){
+        var m, pos;
         //app lives here
         attachEventHandlers();
+        if((m = window.location.href.match(/\?p=(.+),(.+)/))) {
+            pos = {
+                coords: {
+                    latitude: parseFloat(m[1]),
+                    longitude: parseFloat(m[2])
+                }
+            };
+            locationFound(pos);
+            return;
+        }
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(locationFound, locationNotFound);
         }
@@ -78,7 +89,16 @@
                     name: place.name};
         });
 
-        console.log(data);
+        normalizedData.sort(function(o1, o2){
+            return o1.value - o2.value;
+        });
+
+        // console.log(normalizedData);
+
+        // console.log(data);
+
+        doc.querySelector('.popular').textContent = normalizedData[normalizedData.length - 1].name;
+        doc.querySelector('.what-is-popular').style.display = 'block';
 
         value = new nokia.maps.heatmap.Overlay({
             // This is the greatest zoom level for which the overlay will provide tiles
