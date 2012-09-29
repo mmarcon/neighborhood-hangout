@@ -25,7 +25,7 @@
         FSQ = {
             baseUrl: 'https://api.foursquare.com/v2/venues/search?radius=1500&ll={LAT},{LON}&limit=50&client_id=ORIQ5J0OX5QKKIWXFGEEADVVKI0DUKHW10QV2LCKC4KYC3SU&client_secret=4VSNLFBMRRED1ISQF5FNC4RBDSXAJJL11ZMJZP4XUMTRS51G&v=20120927&callback=fsqdata'
         },
-        map, mapEl = doc.querySelector('#map'), density, value;
+        map, mapEl = doc.querySelector('#map'), density, value, infoBubbles;
 
 
     init = function(){
@@ -56,15 +56,18 @@
             jsonp;
 
         nokia.maps.util.ApplicationContext.set({"appId": API.id, "authenticationToken": API.token});
+        infoBubbles = new nokia.maps.map.component.InfoBubbles()
         map = new nokia.maps.map.Display(mapEl,
             {center: [lat, lon],
-             zoomLevel: 17,
+             zoomLevel: 16,
              components:[
-                new nokia.maps.map.component.ZoomBar()
+                new nokia.maps.map.component.ZoomBar(),
+                new nokia.maps.map.component.Behavior(),
+                infoBubbles
              ]});
         map.set("baseMapType", nokia.maps.map.Display.SMARTMAP);
         map.set("maxZoomLevel", 18);
-        map.set("minZoomLevel", 16);
+        map.set("minZoomLevel", 15);
 
         jsonp = doc.createElement('script');
         doc.querySelector('head').appendChild(jsonp);
@@ -87,18 +90,27 @@
                     latitude: place.location.lat,
                     longitude: place.location.lng,
                     name: place.name};
-        });
+        }), fav, favMarker;
 
         normalizedData.sort(function(o1, o2){
             return o1.value - o2.value;
         });
 
-        // console.log(normalizedData);
+        console.log(normalizedData);
 
         // console.log(data);
 
-        doc.querySelector('.popular').textContent = normalizedData[normalizedData.length - 1].name;
-        doc.querySelector('.what-is-popular').style.display = 'block';
+        fav = normalizedData[normalizedData.length - 1];
+        favMarker = new nokia.maps.map.Marker([fav.latitude, fav.longitude], {
+            icon: "../img/heart-mini.png",
+            anchor: new nokia.maps.util.Point(8, 16)
+        });
+        map.objects.add(favMarker);
+
+        infoBubbles.openBubble('<span class="bubble"><b>Most popular place:</b><br/>' + fav.name + '<br/>Checkins: '+ fav.value + '</span>',
+                               [fav.latitude, fav.longitude],
+                               function(){},
+                               true);
 
         value = new nokia.maps.heatmap.Overlay({
             // This is the greatest zoom level for which the overlay will provide tiles
@@ -134,7 +146,7 @@
                 alert('uhmm... something wrong with Foursquare API')
             }
         };
-        doc.querySelector('ul').addEventListener('click', function(e){
+        doc.querySelector('dl').addEventListener('click', function(e){
             e.preventDefault();
             if(e.target.tagName.match(/a/i)) {
                 if(e.target.classList.contains('value')) {

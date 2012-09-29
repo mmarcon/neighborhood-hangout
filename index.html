@@ -26,17 +26,18 @@
 <body>
     <header>
         <h1>Neighborhood Hangouts</h1>
-        <h2>Powered by <a href="http://api.maps.nokia.com" title="Nokia Maps API">Nokia Maps</a></h2>
+        <h2>Powered by <a href="http://api.maps.nokia.com" title="Nokia Maps API">Nokia Maps</a><br/>and <a href="http://foursquare.com" title="Foursquare">Foursquare</a></h2>
     </header>
 
+    <!--http://localhost:8000/?p=52.516769,13.383015-->
 
-    <ul>
-        <li><a href="#" class="density hm" title="In what area your neighbors hang out the most">Areas<div class="tooltip">In what area your neighbors hang out the most</div></a></li>
-        <li><a href="#" class="value hm" title="In what place your neighbors hang out the most">Places<div class="tooltip">Popular places in your neighborhood</div></a></li>
-    </ul>
-    <section class="what-is-popular">
-        <span class="popular"></span>
-    </section>
+    <dl>
+        <dt><a href="#" class="hm density" title="In what area your neighbors hang out the most">Hangouts</a></dt>
+        <dd>Visualize on the maps the areas where your neighbors like to hang out.</dd>
+        <dt><a href="#" class="hm value" title="In what place your neighbors hang out the most">Popular spots</a></dt>
+        <dd>Display on the map the spots that people like the most in your neighborhood.</dd>
+    </dl>
+
     <section id="map"></section>
 
 <script type="text/javascript" src="http://api.maps.nokia.com/2.2.3/jsl.js?with=all"></script>    
