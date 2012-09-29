@@ -107,7 +107,7 @@
         });
         map.objects.add(favMarker);
 
-        infoBubbles.openBubble('<span class="bubble"><b>Most popular place:</b><br/>' + fav.name + '<br/>Checkins: '+ fav.value + '</span>',
+        infoBubbles.openBubble('<span class="bubble"><b>Most popular spot:</b><br/>' + fav.name + '<br/>Checkins: '+ fav.value + '</span>',
                                [fav.latitude, fav.longitude],
                                function(){},
                                true);

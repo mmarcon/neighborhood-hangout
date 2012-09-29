@@ -23,8 +23,8 @@ h1 {
     color: #afeeee;
     font-size: 30px;
     font-family: 'Graduate', cursive;
-    padding: 0 20px;
-    text-align: center;
+    padding: 0 10px;
+    /*text-align: center;*/
 }
 
 h2 {
@@ -64,14 +64,14 @@ a:hover {
     top: 0;
     right: 0;
     bottom: 0;
-    width: 50%;
+    width: 66%;
     border-left: 1px solid #666;
     /*box-shadow: 0 0 8px #ccc;*/
     z-index: 9;
 }
 
 dl {
-    width: 45%;
+    width: 33%;
     font-size: 20px;
     padding: 10px;
 }
