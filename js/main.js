@@ -74,7 +74,7 @@
         jsonp.src = FSQ.baseUrl.replace('{LAT}', lat).replace('{LON}', lon);
 
         var me = new nokia.maps.map.Marker([lat, lon], {
-            icon: "../img/me.png",
+            icon: "img/me.png",
             anchor: new nokia.maps.util.Point(12, 24)
         });
         map.objects.add(me);
@@ -98,7 +98,7 @@
 
         fav = normalizedData[normalizedData.length - 1];
         favMarker = new nokia.maps.map.Marker([fav.latitude, fav.longitude], {
-            icon: "../img/heart-mini.png",
+            icon: "img/heart-mini.png",
             anchor: new nokia.maps.util.Point(8, 16)
         });
         map.objects.add(favMarker);
