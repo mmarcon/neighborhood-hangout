@@ -96,10 +96,6 @@
             return o1.value - o2.value;
         });
 
-        console.log(normalizedData);
-
-        // console.log(data);
-
         fav = normalizedData[normalizedData.length - 1];
         favMarker = new nokia.maps.map.Marker([fav.latitude, fav.longitude], {
             icon: "../img/heart-mini.png",
